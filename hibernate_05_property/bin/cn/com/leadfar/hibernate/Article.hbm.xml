@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="cn.com.leadfar.hibernate.Article" table="t_article">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="title" not-null="true"/>
+		<property name="content" type="text"></property>
+		<property name="createTime" update="false"></property>
+		<property name="attachement" type="binary" length="99999999"></property>
+		<property name="desc" column="C_DESC"></property>
+		<property name="_author" column="C_AUTHOR" access="field"></property>
+	</class>
+	
+</hibernate-mapping>

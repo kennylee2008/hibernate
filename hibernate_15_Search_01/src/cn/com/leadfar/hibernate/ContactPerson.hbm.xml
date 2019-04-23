@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.com.leadfar.hibernate.ContactPerson" table="t_person">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="name"/>
+		<property name="address"/>
+		<property name="qq" />
+		<property name="age" />
+		<property name="createTime" type="timestamp"/>
+		<property name="createDate" type="date"/>
+		<many-to-one name="group" column="gid"></many-to-one>
+	</class>
+
+	<class entity-name="org.topxp.oa.system.model.FriendType" table="t_ftype">
+		<id name="id" type="long">
+			<generator class="native"></generator>
+		</id>
+		<property name="name" type="string">
+		</property>
+		<many-to-one name="parent" column="pid" entity-name="org.topxp.oa.system.model.FriendType"></many-to-one>
+		<set name="children" lazy="extra" inverse="true">
+			<key column="pid"></key>
+			<one-to-many entity-name="org.topxp.oa.system.model.FriendType"/>
+		</set>
+		<set name="members" lazy="extra" inverse="true">
+			<key column="typeId"></key>
+			<one-to-many entity-name="org.topxp.oa.system.model.Friend"/>
+		</set>
+	</class>
+
+	<!-- 动态MAP类 -->
+	<class entity-name="org.topxp.oa.system.model.Friend" table="t_friend">
+		<meta attribute="chnName" inherit="false">人员信息</meta>
+		<!--  <meta attribute="addInputMode" inherit="false">_self</meta> -->
+		<id name="id" type="long">
+			<generator class="native"></generator>
+		</id>
+		<property name="name" type="string">
+			<meta attribute="chnName" inherit="false">姓名</meta>
+			<meta attribute="validType" inherit="false">chinese</meta>
+		</property>
+		<property name="age" type="integer">
+			<meta attribute="chnName" inherit="false">年龄</meta>
+			<meta attribute="validType" inherit="false">numberRange</meta>
+			<meta attribute="validMinNumber" inherit="false">0</meta>
+			<meta attribute="validMaxNumber" inherit="false">100</meta>
+		</property>
+		<property name="qq" type="long">
+			<meta attribute="chnName" inherit="false">QQ</meta>
+			<meta attribute="validType" inherit="false">qq</meta>
+		</property>
+		<property name="birthday" type="date">
+			<meta attribute="chnName" inherit="false">生日</meta>
+		</property>
+		<property name="createTime" type="timestamp" column="CREATE_" update="false">
+			<meta attribute="chnName" inherit="false">创建时间</meta>
+		</property>
+		<property name="lastUpdateTime" type="timestamp" column="UPDATE_">
+			<meta attribute="chnName" inherit="false">更新时间</meta>
+		</property>
+		<property name="creator" type="string" column="CREATOR_" update="false">
+			<meta attribute="chnName" inherit="false">创建者</meta>
+		</property>
+		<property name="lastUpdator" type="string" column="UPDATOR_">
+			<meta attribute="chnName" inherit="false">更新者</meta>
+		</property>	
+		<many-to-one name="type" column="typeId" entity-name="org.topxp.oa.system.model.FriendType"></many-to-one>
+		<component name="address">
+			<property name="city" type="string" column="address_city_"></property>
+			<property name="street" type="string" column="address_street_"></property>
+		</component>
+	</class>
+	
+	<filter-def name="ageFilter">
+		<filter-param name="begin" type="int"/>
+		<filter-param name="end" type="int"/>
+	</filter-def>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.com.leadfar.hibernate.Node" table="t_node">
+		<id name="id">
+			<generator class="hilo"/>
+		</id>
+		<property name="level"/>
+		<property name="name"/>
+		<many-to-one name="parent" column="pid"></many-to-one>
+		<set name="children" lazy="extra" inverse="true" order-by="id">
+			<key column="pid"/>
+			<one-to-many class="cn.com.leadfar.hibernate.Node"/>
+		</set>
+	</class>
+</hibernate-mapping>

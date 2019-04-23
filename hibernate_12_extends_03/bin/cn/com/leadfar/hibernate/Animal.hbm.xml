@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.com.leadfar.hibernate.Animal" table="t_animal">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="name"/>
+		<property name="sex"/>
+		<joined-subclass name="cn.com.leadfar.hibernate.Bird" table="t_bird">
+			<key column="animalId"></key>
+			<property name="height"></property>
+		</joined-subclass>
+		<joined-subclass name="cn.com.leadfar.hibernate.Pig" table="t_pig">
+			<key column="animalId"></key>
+			<property name="weight"></property>
+		</joined-subclass>
+		
+	</class>
+</hibernate-mapping>

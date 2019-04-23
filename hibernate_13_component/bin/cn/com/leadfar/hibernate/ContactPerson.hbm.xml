@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.com.leadfar.hibernate.ContactPerson" table="t_person">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="name"/>
+		<property name="address"/>
+		<property name="qq"/>
+		<component name="home" class="cn.com.leadfar.hibernate.Address">
+			<property name="province" column="hprovince"></property>
+			<property name="city" column="hcity"></property>
+			<property name="block" column="hblock"></property>
+			<property name="street" column="hstreet"></property>
+			<property name="postcode" column="hpostcode"></property>
+		</component>
+		<component name="work" class="cn.com.leadfar.hibernate.Address">
+			<property name="province" column="wprovince"></property>
+			<property name="city" column="wcity"></property>
+			<property name="block" column="wblock"></property>
+			<property name="street" column="wstreet"></property>
+			<property name="postcode" column="wpostcode"></property>
+		</component>
+	</class>
+</hibernate-mapping>

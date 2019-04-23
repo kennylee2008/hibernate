@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.com.leadfar.hibernate.ContactPerson" table="t_person">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="name"/>
+		<property name="address"/>
+		<list name="qqs" table="t_person_qq">
+			<key column="personId"></key>
+			<list-index column="qqIndex"></list-index>
+			<element type="string" column="qqNumber"></element>
+		</list>
+	</class>
+</hibernate-mapping>

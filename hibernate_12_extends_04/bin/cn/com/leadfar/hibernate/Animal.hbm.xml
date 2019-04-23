@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.com.leadfar.hibernate.Animal" table="t_animal">
+		<id name="id">
+			<generator class="hilo"/>
+		</id>
+		<property name="name"/>
+		<property name="sex"/>
+		<union-subclass name="cn.com.leadfar.hibernate.Bird" table="t_bird">
+			<property name="height"></property>
+		</union-subclass>
+		<union-subclass name="cn.com.leadfar.hibernate.Pig" table="t_pig">
+			<property name="weight"></property>
+		</union-subclass>
+	</class>
+</hibernate-mapping>

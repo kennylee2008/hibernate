@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="cn.com.leadfar.hibernate.Document" table="t_doc">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="bolbvalue" type="binary" length="99999999"/>
+		<property name="datevalue" type="date"/>
+		<property name="description" length="25"/>
+		<property name="dvalue" precision="10" scale="5"/>
+		<property name="fvalue" precision="2" scale="2"/>
+		<property name="textvalue" type="text"/>
+		<property name="timevalue" type="timestamp"/>
+	</class>
+	
+</hibernate-mapping>

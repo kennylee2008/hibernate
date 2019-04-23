@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.com.leadfar.hibernate.Employee" table="t_emp">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="address"/>
+		<property name="name"/>
+		<property name="qq"/>
+		<set name="roles" table="t_emp_role">
+			<key column="empId"></key>
+			<many-to-many class="cn.com.leadfar.hibernate.Role" column="roleId"/>
+		</set>
+	</class>
+</hibernate-mapping>
